@@ -1,21 +1,12 @@
 public class SaleService {
-  public void processSale(String customerType, String paymentType, double amount, String email) {
+  public void processSale(String DNI, String paymentType, double amount, String email) {
     if (amount <= 0) {
       System.out.println("Monto inválido");
       return;
     }
-    double discount = 0;
-    if (customerType.equals("REGULAR")) {
-      discount = amount * 0.05;
-    } else if (customerType.equals("VIP")) {
-      discount = amount * 0.10;
-    } else if (customerType.equals("EMPLOYEE")) {
-      discount = amount * 0.15;
-    }
-
-    if (customerType.equals("VIP") && amount > 1000) {
-      discount = amount * 0.15;
-    }
+    
+    CheckCustomerDiscount discountChecker = new CheckCustomerDiscount(DNI);
+    double discount = discountChecker.calcularDescuento(amount);
 
     if (email == null) {
       System.out.println("Email no proporcionado");

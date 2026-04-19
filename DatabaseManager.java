@@ -24,5 +24,12 @@ class DatabaseManager {
         connection.executeQuery(query);
         connection.disconnect();
     }
+    public String[] getRow(String table, String whereClause) {
+        connection.connect();
+        String query = "SELECT * FROM " + table + " WHERE " + whereClause;
+        String[] data = connection.query(query);
+        connection.disconnect();
+        return data;
+    }
 
 }

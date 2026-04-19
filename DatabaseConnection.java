@@ -33,5 +33,19 @@ class DatabaseConnection{
             System.out.println("Error al ejecutar la consulta: " + e.getMessage());
         }
     }
+    public String[] query(String query) {
+        System.out.println("Ejecutando consulta: " + query);
+        try {
+            java.sql.ResultSet rs = conn.createStatement().executeQuery(query);
+            java.util.List<String> results = new java.util.ArrayList<>();
+            while (rs.next()) {
+                results.add(rs.getString(1)); 
+            }
+            return results.toArray(new String[0]);
+        } catch (Exception e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+            return new String[0];
+        }
+    }
     
 }
