@@ -37,7 +37,8 @@ public class SaleService {
            return;
     }
 
-    saveSale()
+    RegisterSale register = new RegisterSale();
+    register.registerSale(customerType, paymentType, finalAmount);
     System.out.println("Guardando venta en base de datos");
 
     String report = "Venta registrada. Cliente: " + customerType +  ", Total: " + finalAmount;
