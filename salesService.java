@@ -21,11 +21,9 @@ public class SaleService {
 
     System.out.println("Generando reporte: " + report);
 
-    if (email != null && !email.isEmpty()) {
-      sendEmailNotification();
-      System.out.println("Enviando correo a: " + email);
-    }
-
+    EmailValidator validarEmail = new EmailValidator(email);
+    validarEmail.send(email, DNI, finalAmount);
+      
   }
   
 }
