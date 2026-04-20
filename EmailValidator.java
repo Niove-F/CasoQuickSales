@@ -5,7 +5,7 @@ public class EmailValidator {
   
   private String email;
   
-  public EmailValidator(){
+  public EmailValidator(String email){
     this.email = email; 
   }
   
@@ -18,9 +18,9 @@ public class EmailValidator {
     return matcher.matches();
   }
 
-  public void main(String email){
+  public void send(String email, String DNI, double amount){
     if (validar(email)) {
-        sendEmailNotification();
+        sendEmailNotification(email, DNI, amount);
     } else {
         throw new IllegalArgumentException("Email invalido");
     }
