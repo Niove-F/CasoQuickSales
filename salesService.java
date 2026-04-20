@@ -1,4 +1,4 @@
-public class SaleService {
+public class salesService {
   
   public void processSale(String DNI, String paymentType, double amount, String email) {
     if (amount <= 0) {

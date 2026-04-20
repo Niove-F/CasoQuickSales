@@ -16,7 +16,6 @@ class RegisterSale {
     }
 
     public String generateSaleReport() {
-        String report = "Reporte de venta: Cliente: " + DNI + ", Método de pago: " + paymentType + ", Monto: " + amount;
-        return report;
+        return "Reporte de venta: Cliente: " + DNI + ", Método de pago: " + paymentType + ", Monto: " + amount;
     }
 }
