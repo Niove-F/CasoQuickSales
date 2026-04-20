@@ -1,14 +1,12 @@
 class PaymentProcessor {
   
     private String paymentType;
-    private double monto;
     
-    public PaymentProcessor(String paymentType, double monto){
+    public PaymentProcessor(String paymentType){
         this.paymentType = paymentType;
-        this.monto = monto;
     }
     
-    public void metodoPago(String paymentType, double monto) {  
+    public void metodoPago(double monto) {  
         switch (paymentType) {
           case "CREDIT_CARD":
               processCreditCardPayment(monto);
