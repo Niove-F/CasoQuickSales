@@ -13,12 +13,12 @@ public class SaleService {
     PaymentProcessor procesarPago = new PaymentProcessor(paymentType);
     procesarPago.metodoPago(finalAmount);
 
-    RegisterSale register = new RegisterSale();
-    register.registerSale(customerType, paymentType, finalAmount);
+    RegisterSale register = new RegisterSale(DNI, paymentType, finalAmount);
+    register.registerSale();
     System.out.println("Guardando venta en base de datos");
 
-    String report = "Venta registrada. Cliente: " + customerType +  ", Total: " + finalAmount;
-    generateSaleReport();
+    String report = register.generateSaleReport();
+
     System.out.println("Generando reporte: " + report);
 
     if (email != null && !email.isEmpty()) {
