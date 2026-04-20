@@ -1,32 +1,17 @@
 public class SaleService {
+  
   public void processSale(String DNI, String paymentType, double amount, String email) {
     if (amount <= 0) {
-      System.out.println("Monto inválido");
-      return;
+      throw new IllegalArgumentException("Monto inválido");
     }
     
     CheckCustomerDiscount discountChecker = new CheckCustomerDiscount(DNI);
     double discount = discountChecker.calcularDescuento(amount);
 
-    if (email == null) {
-      System.out.println("Email no proporcionado");
-    }
-
     double finalAmount = amount - discount;
 
-    if (paymentType.equals("CREDIT_CARD")) {
-           processCreditCardPayment();
-           System.out.println("Procesando pago con tarjeta de crédito");
-    } else if (paymentType.equals("PAYPAL")) {
-           processPaypalPayment();
-           System.out.println("Procesando pago con PayPal");
-    } else if (paymentType.equals("CASH")) {
-           processCashPayment();
-           System.out.println("Procesando pago en efectivo");
-    } else {
-           System.out.println("Método de pago no soportado");
-           return;
-    }
+    PaymentProcessor procesarPago = new PaymentProcessor(paymentType);
+    procesarPago.metodoPago(finalAmount);
 
     RegisterSale register = new RegisterSale();
     register.registerSale(customerType, paymentType, finalAmount);
@@ -41,6 +26,6 @@ public class SaleService {
       System.out.println("Enviando correo a: " + email);
     }
 
-    System.out.println("Proceso completado");
   }
+  
 }
